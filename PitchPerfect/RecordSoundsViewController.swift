@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class RecordSoundsViewController: UIViewController {
 
@@ -14,6 +15,7 @@ class RecordSoundsViewController: UIViewController {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var buttonStopRecording: UIButton! 
     private var isRecording : Bool = false
+    var audioRecorder : AVAudioRecorder!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,10 @@ class RecordSoundsViewController: UIViewController {
         isRecording = true 
         buttonStopRecording.isEnabled = true
         recordButton .isEnabled = false
+         audioRecorder = getAVAudioRecorder()
+        audioRecorder.isMeteringEnabled = true
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,5 +54,18 @@ class RecordSoundsViewController: UIViewController {
         buttonStopRecording.isEnabled = false
         recordButton.isEnabled = true
          labelTapToRecord.text = "Tap to Record"
+        audioRecorder.stop()
+        try! AVAudioSession.sharedInstance().setActive(false)
+    }
+    
+    private func getAVAudioRecorder() -> AVAudioRecorder {
+        let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let recordingName = "recordedVoice.wav"
+        let pathArray = [dirPath, recordingName]
+        let filePath = URL(string: pathArray.joined(separator: "/"))
+        print(filePath!)
+        let session = AVAudioSession.sharedInstance()
+        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
+        return try! AVAudioRecorder(url: filePath!, settings: [:])
     }
 }
