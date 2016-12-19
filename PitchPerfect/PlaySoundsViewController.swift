@@ -47,6 +47,7 @@ class PlaySoundsViewController: UIViewController {
         case .reverb:
             playSound(reverb: true)
         }
+        configureUI(.playing)
     }
 }
 

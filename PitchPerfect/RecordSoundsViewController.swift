@@ -19,17 +19,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
     }
     
     override func viewWillAppear(_ animated : Bool) {
         super.viewWillAppear(animated)
         buttonStopRecording.isEnabled = false;
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func  recordAudio(_ sender: Any) {
@@ -47,7 +41,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print ("viewDidAppear")
     }
     
     @IBAction func stopRecording(_ sender: Any) {
@@ -69,7 +62,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "stopRecording") {
-            print("prepare")
             let playSoundsViewController = segue.destination as! PlaySoundsViewController
             playSoundsViewController.recordedAudioUrl = sender as! URL  
         }
@@ -80,7 +72,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
         let recordingName = "recordedVoice.wav"
         let pathArray = [dirPath, recordingName]
         let filePath = URL(string: pathArray.joined(separator: "/"))
-        print(filePath!)
         let session = AVAudioSession.sharedInstance()
         try! session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
         return try! AVAudioRecorder(url: filePath!, settings: [:])
