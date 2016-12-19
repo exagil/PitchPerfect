@@ -66,6 +66,13 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
             print("could not save audio file")
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "stopRecording") {
+            let playSoundsViewController = segue.destination as! PlaySoundsViewController
+            playSoundsViewController.recordedAudioUrl = sender as! URL  
+        }
+    }
 
     private func getAVAudioRecorder() -> AVAudioRecorder {
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
