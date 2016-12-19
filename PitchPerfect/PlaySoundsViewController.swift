@@ -1,4 +1,5 @@
 import UIKit
+import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
 
@@ -11,18 +12,24 @@ class PlaySoundsViewController: UIViewController {
     @IBOutlet weak var reverbButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
 
+    var audioFile : AVAudioFile!
+    var audioEngine : AVAudioEngine!
+    var audioPlayerNode : AVAudioPlayerNode!
+    var stopTimer: Timer!
+    
+    enum ButtonType: Int {
+        case slow = 0, fast, chipmunk, vader, echo, reverb
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-        print("PlaySoundsViewController: " + recordedAudioUrl.absoluteString  )
+        super.viewWillAppear(animated )
+        configureUI(.notPlaying)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        setupAudio()
+        
     }
 
     @IBAction func stopButtonPressed(_ sender: Any) {
@@ -33,3 +40,5 @@ class PlaySoundsViewController: UIViewController {
         print("playSoundForButton")
     }
 }
+
+ 
