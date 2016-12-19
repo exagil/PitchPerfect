@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class RecordSoundsViewController: UIViewController {
+class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
 
     @IBOutlet weak var labelTapToRecord: UILabel!
     @IBOutlet weak var recordButton: UIButton!
@@ -38,7 +38,8 @@ class RecordSoundsViewController: UIViewController {
         isRecording = true 
         buttonStopRecording.isEnabled = true
         recordButton .isEnabled = false
-         audioRecorder = getAVAudioRecorder()
+        audioRecorder = getAVAudioRecorder()
+        audioRecorder.delegate = self 
         audioRecorder.isMeteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
@@ -58,6 +59,10 @@ class RecordSoundsViewController: UIViewController {
         try! AVAudioSession.sharedInstance().setActive(false)
     }
     
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
+    }
+
     private func getAVAudioRecorder() -> AVAudioRecorder {
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
