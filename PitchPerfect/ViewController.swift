@@ -1,4 +1,4 @@
-//
+ //
 //  ViewController.swift
 //  PitchPerfect
 //
@@ -11,23 +11,42 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var labelTapToRecord: UILabel!
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var buttonStopRecording: UIButton! 
+    private var isRecording : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        print("viewDidLoad")
+    }
+    
+    override func viewWillAppear(_ animated : Bool) {
+        super.viewWillAppear(animated)
+        buttonStopRecording.isEnabled = false;
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func  recordAudio(_ sender: Any) {
-          print("recordAudio button was pressed")
+        print("recordAudio button was pressed")
         labelTapToRecord.text = "Recording in Progress"
+        isRecording = true 
+        buttonStopRecording.isEnabled = true
+        recordButton .isEnabled = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print ("viewDidAppear")
     }
     
     @IBAction func stopRecording(_ sender: Any) {
-        
+        isRecording = false   
+        buttonStopRecording.isEnabled = false
+        recordButton.isEnabled = true
+         labelTapToRecord.text = "Tap to Record"
     }
 }
