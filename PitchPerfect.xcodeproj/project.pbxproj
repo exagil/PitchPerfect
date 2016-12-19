@@ -16,6 +16,7 @@
 		DF75A1A01E065A5A00BAF7BB /* PitchPerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75A19F1E065A5A00BAF7BB /* PitchPerfectUITests.swift */; };
 		DF75A1B21E0809AA00BAF7BB /* PlaySoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75A1B11E0809AA00BAF7BB /* PlaySoundsViewController.swift */; };
 		DF99D32F1E083FC500024FE0 /* PlaySoundsViewController+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF99D32E1E083FC500024FE0 /* PlaySoundsViewController+Audio.swift */; };
+		DF99D3311E084F4A00024FE0 /* ButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF99D3301E084F4900024FE0 /* ButtonType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		DF75A1A11E065A5A00BAF7BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF75A1B11E0809AA00BAF7BB /* PlaySoundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundsViewController.swift; sourceTree = "<group>"; };
 		DF99D32E1E083FC500024FE0 /* PlaySoundsViewController+Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlaySoundsViewController+Audio.swift"; sourceTree = "<group>"; };
+		DF99D3301E084F4900024FE0 /* ButtonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				DF75A18B1E065A5900BAF7BB /* Info.plist */,
 				DF75A1B11E0809AA00BAF7BB /* PlaySoundsViewController.swift */,
 				DF99D32E1E083FC500024FE0 /* PlaySoundsViewController+Audio.swift */,
+				DF99D3301E084F4900024FE0 /* ButtonType.swift */,
 			);
 			path = PitchPerfect;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF99D3311E084F4A00024FE0 /* ButtonType.swift in Sources */,
 				DF75A1821E065A5900BAF7BB /* RecordSoundsViewController.swift in Sources */,
 				DF99D32F1E083FC500024FE0 /* PlaySoundsViewController+Audio.swift in Sources */,
 				DF75A1B21E0809AA00BAF7BB /* PlaySoundsViewController.swift in Sources */,
