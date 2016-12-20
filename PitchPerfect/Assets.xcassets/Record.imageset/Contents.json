@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Record.png",
+      "filename" : "microphone-iphone.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Record@2x.png",
+      "filename" : "microphone2x-iphone.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Record@3x.png",
       "scale" : "3x"
     }
   ],

@@ -13,13 +13,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
 
     @IBOutlet weak var labelTapToRecord: UILabel!
     @IBOutlet weak var recordButton: UIButton!
-    @IBOutlet weak var buttonStopRecording: UIButton! 
-    private var isRecording : Bool = false
+    @IBOutlet weak var buttonStopRecording: UIButton!
     var audioRecorder : AVAudioRecorder!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(_ animated : Bool) {
         super.viewWillAppear(animated)
@@ -27,27 +22,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
     }
     
     @IBAction func  recordAudio(_ sender: Any) {
-        print("recordAudio button was pressed")
-        labelTapToRecord.text = "Recording in Progress"
-        isRecording = true 
-        buttonStopRecording.isEnabled = true
-        recordButton .isEnabled = false
-        audioRecorder = getAVAudioRecorder()
-        audioRecorder.delegate = self 
-        audioRecorder.isMeteringEnabled = true
-        audioRecorder.prepareToRecord()
-        audioRecorder.record()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        showRecordingInProgressUI()
+        startRecording()
     }
     
     @IBAction func stopRecording(_ sender: Any) {
-        isRecording = false   
-        buttonStopRecording.isEnabled = false
-        recordButton.isEnabled = true
-         labelTapToRecord.text = "Tap to Record"
+        showRecordingNotInProgressUI()
         audioRecorder.stop()
         try! AVAudioSession.sharedInstance().setActive(false)
     }
@@ -75,5 +55,25 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate   {
         let session = AVAudioSession.sharedInstance()
         try! session.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
         return try! AVAudioRecorder(url: filePath!, settings: [:])
+    }
+    
+    private func showRecordingInProgressUI() {
+        labelTapToRecord.text = "Recording in Progress"
+        buttonStopRecording.isEnabled = true
+        recordButton.isEnabled = false
+    }
+    
+    private func startRecording() {
+        audioRecorder = getAVAudioRecorder()
+        audioRecorder.delegate = self
+        audioRecorder.isMeteringEnabled = true
+        audioRecorder.prepareToRecord()
+        audioRecorder.record()
+    }
+    
+    private func showRecordingNotInProgressUI() {
+        buttonStopRecording.isEnabled = false
+        recordButton.isEnabled = true
+        labelTapToRecord.text = "Tap to Record"
     }
 }

@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Echo.png",
+      "filename" : "echo-iphone.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Echo@2x.png",
+      "filename" : "echo2x-iphone.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Echo@3x.png",
       "scale" : "3x"
     }
   ],
